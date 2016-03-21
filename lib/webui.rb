@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require "#{::File.dirname(__FILE__)}/worker"
+require 'myworker'
 
 require 'sidekiq/web'
 app = Sidekiq::Web
