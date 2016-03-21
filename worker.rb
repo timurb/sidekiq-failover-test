@@ -17,7 +17,7 @@ Sidekiq.configure_server do |config|
   }
 end
 
-class PlainOldRuby
+class MyWorker
   include Sidekiq::Worker
 
   def perform(how_hard="super hard", how_long=1)
