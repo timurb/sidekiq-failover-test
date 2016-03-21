@@ -11,7 +11,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # For Centos 7 simply "yum install -y epel-release; yum install -y redis" should be ok
 
+  config.vm.provision :shell, path: 'install-base.sh'
   config.vm.provision :shell, path: 'install-redis.sh'
+  config.vm.provision :shell, path: 'install-ruby.sh'
 
   # Config for Virtualbox provider
   config.vm.provider "virtualbox" do |_,override|
