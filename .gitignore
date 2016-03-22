@@ -38,3 +38,6 @@ build/
 .vagrant/
 *~
 *.swp
+
+checkins.txt
+log/
