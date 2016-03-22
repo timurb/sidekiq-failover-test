@@ -20,8 +20,10 @@ end
 class MyWorker
   include Sidekiq::Worker
 
-  def perform(how_hard="super hard", how_long=1)
-    sleep how_long
-    puts "Workin' #{how_hard}"
+  def perform(sequence, delay=1)
+    sleep delay
+    File.open('checkins.txt', 'a') do |f|
+      f.puts(sequence)
+    end
   end
 end
