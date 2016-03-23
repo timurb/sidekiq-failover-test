@@ -1,20 +1,20 @@
 require 'sidekiq'
 
-# If your client is single-threaded, we just need a single connection in our Redis connection pool
+redis_conn = proc {
+  redis = Redis.new(:url => "redis://mymaster",
+                    :sentinels => [
+                      {:host => "localhost", :port => 26371},
+                      {:host => "localhost", :port => 26372},
+                      {:host => "localhost", :port => 26373}
+                    ])
+}
+
 Sidekiq.configure_client do |config|
-  config.redis = {
-    namespace: 'x',
-    size: 1,
-    url: 'redis://localhost:6371'
-  }
+  config.redis = ConnectionPool.new(size: 5, &redis_conn)
 end
 
-# Sidekiq server is multi-threaded so our Redis connection pool size defaults to concurrency (-c)
 Sidekiq.configure_server do |config|
-  config.redis = {
-    namespace: 'x',
-    url: 'redis://localhost:6371'
-  }
+  config.redis = ConnectionPool.new(size: 25, &redis_conn)
 end
 
 class MyWorker
