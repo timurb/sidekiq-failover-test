@@ -10,7 +10,9 @@ EOF
 }
 
 [ -z "$1" ] && usage
+NODE="$1"
 
 redis-cli -p "637${NODE}" debug segfault
+date
 
 echo "Run 'start-redis.sh' to bring redis up"

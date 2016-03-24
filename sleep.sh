@@ -10,6 +10,9 @@ EOF
 }
 
 [ -z "$1" ] && usage
+NODE="$1"
 SECONDS="${2:-30}"
 
+date
 redis-cli -p "637${NODE}" debug sleep "${SECONDS}"
+date

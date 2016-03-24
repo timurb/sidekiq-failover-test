@@ -8,3 +8,4 @@ check_pid() {
 check_pid /var/run/redis1.pid || sudo -u redis /usr/bin/redis-server /vagrant/etc/redis1.conf
 check_pid /var/run/redis2.pid || sudo -u redis /usr/bin/redis-server /vagrant/etc/redis2.conf
 check_pid /var/run/redis3.pid || sudo -u redis /usr/bin/redis-server /vagrant/etc/redis3.conf
+date
