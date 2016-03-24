@@ -7,6 +7,8 @@ git clone https://github.com/rbenv/ruby-build.git /tmp/ruby-build
 cd /tmp/ruby-build
 ./install.sh
 
+ruby-build 2.2.1 /usr/local
+
 export PATH="$PATH:/usr/local/bin"
 echo 'export PATH="$PATH:/usr/local/bin"' >> ~/.bash_profile
 
