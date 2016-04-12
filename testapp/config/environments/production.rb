@@ -54,8 +54,7 @@ Rails.application.configure do
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
-  # Use a different cache store in production.
-  config.cache_store = :redis_store, {
+  config.x.redis_endpoint = {
     url: 'redis://mymaster',
     sentinels: [
       { host: 'localhost', port: 26371 },
@@ -63,6 +62,9 @@ Rails.application.configure do
       { host: 'localhost', port: 26373 }
     ]
   }
+
+  # Use a different cache store in production.
+  config.cache_store = :redis_store, Rails.configuration.x.redis_endpoint
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
